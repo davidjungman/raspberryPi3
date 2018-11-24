@@ -6,21 +6,15 @@ import os
 app = Flask(__name__)
 api = Api(app)
 
+@app.route("/lightoff")
+def lightOff(self):
+    os.system('python LightOff.py')
+    return jsonify("success")
 
-class LightOff(Resource):
-    def get(self):
-        os.system('python LightOff.py')
-        return jsonify("success")
-
-
-class LightOn(Resource):
-    def get(self):
-        os.system('python LightOn.py')
-        return jsonify("success")
-
-
-api.add_resource(LightOff, '/api/lightoff')
-api.add_resource(LightOn, '/api/lighton')
+@app.route("/lighton")
+def lightOn(self):
+    os.system('python LightOn.py')
+    return jsonify("success")
 
 if __name__ == '__main__':
     app.run(port='5000')
